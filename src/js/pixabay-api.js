@@ -1,10 +1,8 @@
 import axios from 'axios';
-import { showLoader, hideLoader } from './render-functions';
 import { iziError } from '../main';
 const PIXABAY_KEY = '51390103-e5f94b12a87f57c9fbe51ad97';
 
 export function getImagesByQuery(query) {
-  showLoader();
   return axios('https://pixabay.com/api/', {
     params: {
       key: PIXABAY_KEY,
@@ -18,9 +16,6 @@ export function getImagesByQuery(query) {
       return res.data.hits;
     })
     .catch(error => {
-      iziError(error.message);
-    })
-    .finally(() => {
-      hideLoader();
+      throw error;
     });
 }
