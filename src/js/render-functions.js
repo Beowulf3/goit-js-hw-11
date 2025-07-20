@@ -31,22 +31,22 @@ export function createGallery(images) {
     )
     .join('');
   gallery.insertAdjacentHTML('beforeend', markup);
-  let slider = new SimpleLightbox('.gallery a', {
-    captionsData: 'alt',
-    captionPosition: 'bottom',
-    captionDelay: 250,
-  });
   slider.refresh();
 }
 
+let slider = new SimpleLightbox('.gallery a', {
+  captionsData: 'alt',
+  captionPosition: 'bottom',
+  captionDelay: 250,
+});
 export function clearGallery() {
   gallery.innerHTML = '';
 }
 
 export function showLoader() {
-  loader.classList.toggle('hidden');
+  loader.classList.remove('hidden');
 }
 
 export function hideLoader() {
-  loader.classList.toggle('hidden');
+  loader.classList.add('hidden');
 }

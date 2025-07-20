@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { createGallery } from './render-functions';
 import { showLoader, hideLoader } from './render-functions';
+import { iziError } from '../main';
 const PIXABAY_KEY = '51390103-e5f94b12a87f57c9fbe51ad97';
 
 export function getImagesByQuery(query) {
@@ -15,11 +15,10 @@ export function getImagesByQuery(query) {
     },
   })
     .then(res => {
-      createGallery(res.data.hits);
       return res.data.hits;
     })
     .catch(error => {
-      console.log(error);
+      iziError(error.message);
     })
     .finally(() => {
       hideLoader();
